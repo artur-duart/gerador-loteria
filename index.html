@@ -3,13 +3,69 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="keywords"
+			content="números aleatórios, loteria, apostas, gerador de números, gerador de fortuna"
+		/>
 
-		<script src="index.js" defer></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
 
-		<title>
-			Gerador de Fortuna: Números Aleatórios para Loteria e Apostas
-		</title>
+		<link rel="stylesheet" href="style.css" />
+		<!-- <script src="index.js" defer></script> -->
+
+		<title>Gerador de Fortuna</title>
 	</head>
 
-	<body></body>
+	<body>
+		<header>
+			<h1>Gerador de Fortuna</h1>
+			<p>Números Aleatórios para Loteria e Apostas</p>
+		</header>
+
+		<main>
+			<div class="container-inputs">
+				<div class="container-input">
+					<span
+						>Escolha o intervalo de números para sortear (de 1 até
+						<span id="max-number"></span>):
+					</span>
+					<input
+						id="slider-max-number"
+						class="slider"
+						type="range"
+						min="1"
+						max="100"
+					/>
+				</div>
+				<div class="container-input">
+					<span
+						>Escolha quantos números deseja sortear:
+						<span id="quantity"></span
+					></span>
+					<input
+						id="slider-quantity"
+						class="slider"
+						type="range"
+						min="1"
+						max="100"
+					/>
+				</div>
+			</div>
+
+			<button type="button" id="button" class="button-cta">
+				Sortear
+			</button>
+
+			<div class="container-sorted-numbers hide">
+				<span class="sorted-number">1</span>
+				<span class="sorted-number">2</span>
+				<span class="sorted-number">3</span>
+			</div>
+		</main>
+	</body>
 </html>

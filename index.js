@@ -1,8 +1,8 @@
 'use strict';
 
 function getRandomInt(min, max) {
-	min = Math.ceil(min); // Arredonda para cima
-	max = Math.floor(max); //Aredonda para baixo
+	min = Math.ceil(min);
+	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -19,6 +19,7 @@ function checkOrder(min, max) {
 		alert(
 			'Ops, parece que você inverteu a ordem entre o mínimo e o máximo, portanto, corrigimos para você!'
 		);
+		min > max 
 		let aux = min;
 		min = max;
 		max = aux;
@@ -35,12 +36,12 @@ function checkNumberOfNumbersToSort(min, max) {
 			prompt('Quantos números você quer sortear?')
 		);
 
-		if (numberOfNumbersToSort >= max - min) {
+		if (numberOfNumbersToSort > max - min) {
 			alert(
 				'A quantidade de números deve ser menor ou igual à diferença entre o máximo e o mínimo'
 			);
 		}
-	} while (numberOfNumbersToSort >= max - min);
+	} while (numberOfNumbersToSort > max - min);
 
 	return numberOfNumbersToSort;
 }
