@@ -21,28 +21,6 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// function getNumberFromUser(text) {
-// 	let value;
-// 	do {
-// 		value = parseFloat(prompt(`Digite o número ${text}:`));
-// 	} while (isNaN(value));
-// 	return value;
-// }
-
-// function checkOrder(min, max) {
-// 	if (min > max) {
-// 		alert(
-// 			'Ops, parece que você inverteu a ordem entre o mínimo e o máximo, portanto, corrigimos para você!'
-// 		);
-// 		min > max
-// 		let aux = min;
-// 		min = max;
-// 		max = aux;
-// 	}
-
-// 	return [min, max];
-// }
-
 function checkNumberOfNumbersToSort(min, max) {
 	let numberOfNumbersToSort;
 
@@ -86,7 +64,14 @@ function sortNumbers() {
 		}
 	}
 
-	console.log(sortedNumbers);
-}
+	let containerSortedNumbersElement = document.querySelector(
+		'.container-sorted-numbers'
+	);
 
-// alert(sortNumbers());
+	containerSortedNumbersElement.innerHTML = sortedNumbers
+		.map(
+			(sortedNumber) =>
+			'<span class="sorted-number">' + sortedNumber + '</span>'
+		)
+		.join('');
+}
