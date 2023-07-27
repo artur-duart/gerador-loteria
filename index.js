@@ -1,40 +1,53 @@
 'use strict';
 
+let sliderMaxNumberElement = document.querySelector('#slider-max-number');
+let sliderQuantityElement = document.querySelector('#slider-quantity');
+let buttonElement = document.querySelector('#button');
+
+let maxNumberSpan = document.querySelector('#max-number');
+let quantitySpan = document.querySelector('#quantity');
+
+sliderMaxNumberElement.oninput = function () {
+	maxNumberSpan.innerHTML = this.value;
+};
+
+sliderQuantityElement.oninput = function () {
+	quantitySpan.innerHTML = this.value;
+};
+
 function getRandomInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getNumberFromUser(text) {
-	let value;
-	do {
-		value = parseFloat(prompt(`Digite o número ${text}:`));
-	} while (isNaN(value));
-	return value;
-}
+// function getNumberFromUser(text) {
+// 	let value;
+// 	do {
+// 		value = parseFloat(prompt(`Digite o número ${text}:`));
+// 	} while (isNaN(value));
+// 	return value;
+// }
 
-function checkOrder(min, max) {
-	if (min > max) {
-		alert(
-			'Ops, parece que você inverteu a ordem entre o mínimo e o máximo, portanto, corrigimos para você!'
-		);
-		min > max 
-		let aux = min;
-		min = max;
-		max = aux;
-	}
+// function checkOrder(min, max) {
+// 	if (min > max) {
+// 		alert(
+// 			'Ops, parece que você inverteu a ordem entre o mínimo e o máximo, portanto, corrigimos para você!'
+// 		);
+// 		min > max
+// 		let aux = min;
+// 		min = max;
+// 		max = aux;
+// 	}
 
-	return [min, max];
-}
+// 	return [min, max];
+// }
 
 function checkNumberOfNumbersToSort(min, max) {
 	let numberOfNumbersToSort;
 
 	do {
-		numberOfNumbersToSort = parseInt(
-			prompt('Quantos números você quer sortear?')
-		);
+		numberOfNumbersToSort = sliderQuantityElement.value;
 
 		if (numberOfNumbersToSort > max - min) {
 			alert(
@@ -47,15 +60,19 @@ function checkNumberOfNumbersToSort(min, max) {
 }
 
 function sortNumbers() {
-	let min = getNumberFromUser('mínimo');
-	let max = getNumberFromUser('máximo');
 	let sortedNumbers = [];
 
-	let checkedValues = checkOrder(min, max);
-	min = checkedValues[0];
-	max = checkedValues[1];
+	let min = 1;
+	let max = sliderMaxNumberElement.value;
 
-	let numberOfNumbersToSort = checkNumberOfNumbersToSort(min, max);
+	let numberOfNumbersToSort = sliderQuantityElement.value;
+
+	if (numberOfNumbersToSort > max - min + 1) {
+		alert(
+			'A quantidade de números deve ser menor ou igual à diferença entre o máximo e o mínimo'
+		);
+		return;
+	}
 
 	for (let i = 0; i < numberOfNumbersToSort; i++) {
 		let sortedNumber = getRandomInt(min, max);
@@ -69,12 +86,7 @@ function sortNumbers() {
 		}
 	}
 
-	return sortedNumbers;
+	console.log(sortedNumbers);
 }
 
-alert(sortNumbers());
-
-// Anotações
-// Math.ceil sempre arredonda para cima, Math.floor sempre arredonda para baixo e Math.round arredonda para cima se a parte fracionária for maior ou igual a 5, caso contrário, arredonda para baixo.
-
-// A lógica por trás da função getRandomInt() é que, ao multiplicar Math.random(), que gera um número aleatório entre 0 e 1, pelo intervalo entre min e max, estamos escalonando o número aleatório gerado para estar dentro desse intervalo. Ao adicionar o valor de min ao resultado, estamos deslocando o número gerado para começar em min em vez de 0.
+// alert(sortNumbers());

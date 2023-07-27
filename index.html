@@ -16,7 +16,7 @@
 		/>
 
 		<link rel="stylesheet" href="style.css" />
-		<!-- <script src="index.js" defer></script> -->
+		<script src="index.js" defer></script>
 
 		<title>Gerador de Fortuna</title>
 	</head>
@@ -32,20 +32,20 @@
 				<div class="container-input">
 					<span
 						>Escolha o intervalo de números para sortear (de 1 até
-						<span id="max-number"></span>):
+						<span id="max-number">51</span>):
 					</span>
 					<input
 						id="slider-max-number"
 						class="slider"
 						type="range"
-						min="1"
+						min="2"
 						max="100"
 					/>
 				</div>
 				<div class="container-input">
 					<span
 						>Escolha quantos números deseja sortear:
-						<span id="quantity"></span
+						<span id="quantity">51</span
 					></span>
 					<input
 						id="slider-quantity"
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 
-			<button type="button" id="button" class="button-cta">
+			<button type="button" id="button" class="button-cta" onclick="sortNumbers()">
 				Sortear
 			</button>
 
