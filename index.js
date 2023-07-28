@@ -2,7 +2,8 @@
 
 const maxNumberSlider = document.querySelector('#slider-max-number');
 const sliderQuantity = document.querySelector('#slider-quantity');
-const button = document.querySelector('#button');
+const buttonSort = document.querySelector('#button-sort');
+const buttonCopy = document.querySelector('#button-copy');
 const maxNumber = document.querySelector('#max-number');
 const quantity = document.querySelector('#quantity');
 
@@ -23,11 +24,13 @@ function validateNumberOfNumbersToSort(max) {
 
 	if (numberOfNumbersToSort > max) {
 		alert(
-			`A quantidade de números para sortear deve ser menor ou igual a ${max}`
+			`O número de elementos a serem sorteados deve ser igual ou inferior a ${max}.`
 		);
+		buttonCopy.classList.add('hide');
 		return;
 	}
 
+	buttonCopy.classList.remove('hide');
 	return numberOfNumbersToSort;
 }
 
@@ -58,7 +61,23 @@ function displaySortedNumbers(array) {
 		.join('');
 }
 
-button.addEventListener('click', () => {
-	let sortedNumbersArray = generateUniqueRandomNumbers();
+let sortedNumbersArray;
+
+buttonSort.addEventListener('click', () => {
+	sortedNumbersArray = generateUniqueRandomNumbers();
 	displaySortedNumbers(sortedNumbersArray);
+});
+
+buttonCopy.addEventListener('click', () => {
+	let textToCopy = sortedNumbersArray.join(' ');
+	let textArea = document.createElement('textarea');
+	textArea.value = textToCopy;
+	document.body.appendChild(textArea);
+	textArea.select();
+	document.execCommand('copy');
+	document.body.removeChild(textArea);
+
+	alert(
+		'Números copiados com sucesso! Agora você pode colá-los onde desejar.'
+	);
 });

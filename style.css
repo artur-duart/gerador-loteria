@@ -122,3 +122,7 @@ main {
 	text-align: center;
 	width: 48px;
 }
+
+.hide {
+	display: none;
+}
